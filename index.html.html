@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desafio do Mascote</title>
+<style>
+body{margin:0;font-family:Segoe UI,Arial;background:linear-gradient(135deg,#081a33,#102b55);color:#fff}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+.hero h1{font-size:3rem;margin:0}
+.hero p{font-size:1.2rem;opacity:.9}
+.btn{background:#d71920;color:#fff;border:none;padding:14px 28px;border-radius:10px;cursor:pointer;font-weight:bold}
+.card{max-width:900px;margin:30px auto;background:rgba(255,255,255,.08);padding:25px;border-radius:18px}
+.hidden{display:none}
+input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none}
+.progress{height:18px;background:#223b64;border-radius:20px;overflow:hidden}
+.bar{height:18px;width:0;background:#d71920}
+.eagle{position:fixed;inset:0;font-size:300px;opacity:.05;display:flex;justify-content:center;align-items:center;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="eagle">🦅</div>
+
+<section class="hero" id="inicio">
+<h1>DESAFIO DO MASCOTE</h1>
+<p>7 pistas • 1 investigação • 1 prêmio</p>
+<button class="btn" onclick="iniciar()">COMEÇAR INVESTIGAÇÃO</button>
+</section>
+
+<div class="card hidden" id="quiz">
+<div class="progress"><div class="bar" id="bar"></div></div>
+<h2 id="titulo"></h2>
+<p id="pergunta"></p>
+<input id="resp" placeholder="Digite sua resposta">
+<button class="btn" onclick="validar()">VALIDAR</button>
+<p id="msg"></p>
+</div>
+
+<div class="card hidden" id="final">
+<h2>🎯 Desafio Final</h2>
+<p>Após analisar todas as pistas, qual é o nome do nosso mascote?</p>
+<input id="finalResp">
+<button class="btn" onclick="validarFinal()">ENVIAR RESPOSTA</button>
+</div>
+
+<div class="card hidden" id="cadastro">
+<h2>🎉 Parabéns!</h2>
+<p>Você solucionou o desafio. Preencha seus dados para receber o brinde.</p>
+<input id="nome" placeholder="Nome">
+<input id="setor" placeholder="Setor">
+<input id="email" placeholder="E-mail">
+<input id="telefone" placeholder="Telefone">
+<button class="btn" onclick="enviarCadastro()">RECEBER BRINDE</button>
+<button class="btn" onclick="teste()">TESTAR GOOGLE SHEETS</button>
+</div>
+
+<script>
+const perguntas=[
+["Pista 1","Qual é o número romano que representa cinquenta?","L"],
+["Pista 2","Qual é o menor valor representado na numeração romana?","I"],
+["Pista 3","Qual é a décima quarta letra do alfabeto?","N"],
+["Pista 4","Qual palavra representa a capacidade de cumprir aquilo que foi prometido?","COMPROMISSO"],
+["Pista 5","Qual letra está entre N e P?","O"],
+["Pista 6","Na numeração romana, qual letra representa novamente o valor cinquenta?","L"],
+["Pista 7","Qual é a primeira letra do mês de Novembro?","N"]
+];
+let i=0;
+function iniciar(){inicio.style.display='none';quiz.classList.remove('hidden');carregar();}
+function carregar(){titulo.innerText=perguntas[i][0];pergunta.innerText=perguntas[i][1];bar.style.width=(i/perguntas.length*100)+'%';msg.innerText='';}
+function validar(){
+ if(resp.value.trim().toUpperCase()===perguntas[i][2]){
+   i++;
+   resp.value='';
+   if(i<perguntas.length){carregar();}
+   else{quiz.classList.add('hidden');final.classList.remove('hidden');}
+ } else msg.innerText='Resposta incorreta.';
+}
+function validarFinal(){
+ if(finalResp.value.trim().toUpperCase()==='LINCOLN'){
+   final.classList.add('hidden');
+   cadastro.classList.remove('hidden');
+ } else alert('Resposta incorreta');
+}
+async function enviarCadastro(){
+ const dados={nome:nome.value,setor:setor.value,email:email.value,telefone:telefone.value};
+ try{
+ await fetch('https://script.google.com/macros/s/AKfycbxy3ff4V15ZmqaXijpoB_TD71o-z6SHyAxzLSk5ka0rAlYv3ND_65LlSBsnlWf2mxB6/exec',{
+ method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dados)});
+ alert('Cadastro enviado com sucesso!');
+ }catch(e){alert('Erro ao enviar cadastro');}
+}
+function teste(){
+ nome.value='TESTE';setor.value='SITE';email.value='teste@teste.com';telefone.value='999999999';
+ enviarCadastro();
+}
+</script>
+</body>
+</html>
