@@ -188,7 +188,7 @@ input{
 
 </section>
 
-<div class="card hidden" id="quiz">
+<div class="card hidden" id="quiz" style="max-width:800px;">
 <div class="progress"><div class="bar" id="bar"></div></div>
 <h2 id="titulo"></h2>
 <p id="pergunta"></p>
@@ -274,15 +274,32 @@ const perguntas=[
 let i=0;
 function iniciar(){
 
-    document.getElementById("quiz")
-        .classList.remove("hidden");
+    document.querySelector(".hero-text").innerHTML = `
+        <div class="card" style="
+            max-width:800px;
+            margin:0;
+            background:rgba(0,0,0,.35);
+            backdrop-filter:blur(8px);
+        ">
+            <div class="progress">
+                <div class="bar" id="bar"></div>
+            </div>
 
-    document.getElementById("quiz")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
+            <h2 id="titulo"></h2>
+            <p id="pergunta"></p>
+
+            <input id="resp" placeholder="Digite sua resposta">
+
+            <button class="btn" onclick="validar()">
+                VALIDAR
+            </button>
+
+            <p id="msg"></p>
+        </div>
+    `;
 
     carregar();
+}
 }
 function carregar(){titulo.innerText=perguntas[i][0];pergunta.innerText=perguntas[i][1];bar.style.width=(i/perguntas.length*100)+'%';msg.innerText='';}
 function validar(){
