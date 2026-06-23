@@ -19,7 +19,7 @@ body{
             rgba(5,15,35,.75),
             rgba(5,15,35,.90)
         ),
-        url('banner.jpg');
+        url('banner.png');
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
@@ -32,37 +32,38 @@ body{
 .logo{
     width:220px;
 }
-
 .hero-content{
     max-width:1400px;
     margin:auto;
+    min-height:75vh;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:40px;
-    padding:40px 60px;
+    justify-content:flex-start;
+    padding:40px 80px;
 }
 
 .hero-text{
-    max-width:600px;
+    max-width:650px;
+    background:rgba(0,0,0,.25);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(5px);
 }
 
 .hero-text h1{
-    font-size:80px;
-    line-height:.95;
+    font-size:95px;
+    line-height:.9;
     margin:0;
     font-weight:900;
+    text-transform:uppercase;
+    text-shadow:0 4px 20px rgba(0,0,0,.6);
 }
-
 .hero-text p{
-    font-size:26px;
-    margin:25px 0;
+    font-size:30px;
+    margin:30px 0;
+    max-width:650px;
 }
 
-.hero-mascote img{
-    width:500px;
-    max-width:100%;
-}
 
 .btnHero{
     background:#d71920;
@@ -139,10 +140,6 @@ input{
         font-size:20px;
     }
 
-    .hero-mascote img{
-        width:320px;
-    }
-
     .topo{
         text-align:center;
         padding:20px;
@@ -178,10 +175,7 @@ input{
 
         </div>
 
-        <div class="hero-mascote">
-            <img src="lincoln.png">
-        </div>
-
+        
     </div>
 
 </section>
@@ -211,7 +205,59 @@ input{
 <input id="telefone" placeholder="Telefone">
 <button class="btn" onclick="enviarCadastro()">RECEBER BRINDE</button>
 </div>
+<div style="
+background:#081428;
+padding:40px 20px;
+margin-top:50px;
+border-top:1px solid rgba(255,255,255,.1);
+">
 
+<div style="
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+gap:30px;
+text-align:center;
+">
+
+<div>
+<h3>🏆 ORGULHO</h3>
+<p>Trabalhamos com orgulho e dedicação.</p>
+</div>
+
+<div>
+<h3>⭐ DETERMINAÇÃO</h3>
+<p>Somos determinados a entregar o melhor.</p>
+</div>
+
+<div>
+<h3>👥 UNIÃO</h3>
+<p>Nossa força está na união da equipe.</p>
+</div>
+
+<div>
+<h3>🥇 VITÓRIA</h3>
+<p>Buscamos a vitória todos os dias.</p>
+</div>
+
+</div>
+
+<div style="
+text-align:center;
+margin-top:30px;
+font-size:24px;
+font-weight:bold;
+">
+FORÇA, UNIÃO E VITÓRIA!
+<br>
+<span style="color:#d71920">
+Rumo aos Estados Unidos 2026!
+</span>
+</div>
+
+</div>
 <script>
 const perguntas=[
 ["Pista 1","Qual é o número romano que representa cinquenta?","L"],
@@ -223,7 +269,18 @@ const perguntas=[
 ["Pista 7","Qual é a primeira letra do mês de Novembro?","N"]
 ];
 let i=0;
-function iniciar(){inicio.style.display='none';quiz.classList.remove('hidden');carregar();}
+function iniciar(){
+
+    document.getElementById("quiz")
+        .classList.remove("hidden");
+
+    document.getElementById("quiz")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    carregar();
+}
 function carregar(){titulo.innerText=perguntas[i][0];pergunta.innerText=perguntas[i][1];bar.style.width=(i/perguntas.length*100)+'%';msg.innerText='';}
 function validar(){
  if(resp.value.trim().toUpperCase()===perguntas[i][2]){
