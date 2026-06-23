@@ -300,7 +300,6 @@ function iniciar(){
 
     carregar();
 }
-}
 function carregar(){titulo.innerText=perguntas[i][0];pergunta.innerText=perguntas[i][1];bar.style.width=(i/perguntas.length*100)+'%';msg.innerText='';}
 function validar(){
  if(resp.value.trim().toUpperCase()===perguntas[i][2]){
