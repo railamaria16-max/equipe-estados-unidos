@@ -5,170 +5,152 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Desafio do Mascote</title>
 <style>
-body{margin:0;font-family:Segoe UI,Arial;background:linear-gradient(135deg,#081a33,#102b55);color:#fff}
+body{
+    margin:0;
+    font-family:Segoe UI,Arial,sans-serif;
+    background:#081a33;
+    color:#fff;
+}
+
 .hero{
-min-height:100vh;
-background:
-linear-gradient(
-rgba(5,15,35,.75),
-rgba(5,15,35,.9)
-),
-url('banner.jpg');
-
-```
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-```
-
+    min-height:100vh;
+    background:
+        linear-gradient(
+            rgba(5,15,35,.75),
+            rgba(5,15,35,.90)
+        ),
+        url('banner.jpg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
 .topo{
-padding:30px 50px;
+    padding:30px 50px;
 }
 
 .logo{
-width:220px;
+    width:220px;
 }
 
 .hero-content{
-max-width:1400px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:40px;
-padding:40px 60px;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    padding:40px 60px;
 }
 
 .hero-text{
-max-width:600px;
+    max-width:600px;
 }
 
 .hero-text h1{
-font-size:80px;
-line-height:.95;
-margin:0;
-font-weight:900;
+    font-size:80px;
+    line-height:.95;
+    margin:0;
+    font-weight:900;
 }
 
 .hero-text p{
-font-size:26px;
-margin:25px 0;
+    font-size:26px;
+    margin:25px 0;
 }
 
 .hero-mascote img{
-width:500px;
-max-width:100%;
+    width:500px;
+    max-width:100%;
 }
 
 .btnHero{
-background:#d71920;
-color:white;
-border:none;
-border-radius:12px;
-padding:18px 40px;
-font-size:22px;
-font-weight:bold;
-cursor:pointer;
-}
-
-@media(max-width:900px){
-
-```
-.hero-content{
-    flex-direction:column;
-    text-align:center;
-}
-
-.hero-text h1{
-    font-size:50px;
-}
-
-.hero-mascote img{
-    width:320px;
-}
-```
-
-}
-
-.hero h1{font-size:3rem;margin:0}
-.hero p{font-size:1.2rem;opacity:.9}
-.btn{background:#d71920;color:#fff;border:none;padding:14px 28px;border-radius:10px;cursor:pointer;font-weight:bold}
-.card{max-width:900px;margin:30px auto;background:rgba(255,255,255,.08);padding:25px;border-radius:18px}
-.hidden{display:none}
-input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none}
-.progress{height:18px;background:#223b64;border-radius:20px;overflow:hidden}
-.bar{height:18px;width:0;background:#d71920}
-.topo{
-padding:30px 50px;
-}
-
-.logo{
-width:220px;
-}
-
-.hero-content{
-max-width:1400px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:40px;
-padding:40px 60px;
-}
-
-.hero-text{
-max-width:600px;
-}
-
-.hero-text h1{
-font-size:80px;
-line-height:.95;
-margin:0;
-font-weight:900;
-}
-
-.hero-text p{
-font-size:26px;
-margin:25px 0;
-}
-
-.hero-mascote img{
-width:500px;
-max-width:100%;
-}
-
-.btnHero{
-background:#d71920;
-color:#fff;
-border:none;
-border-radius:12px;
-padding:18px 40px;
-font-size:22px;
-font-weight:700;
-cursor:pointer;
+    background:#d71920;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:18px 40px;
+    font-size:22px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
 }
 
 .btnHero:hover{
-transform:translateY(-2px);
+    transform:translateY(-2px);
+}
+
+.btn{
+    background:#d71920;
+    color:#fff;
+    border:none;
+    padding:14px 28px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.card{
+    max-width:900px;
+    margin:30px auto;
+    background:rgba(255,255,255,.08);
+    padding:25px;
+    border-radius:18px;
+}
+
+.hidden{
+    display:none;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:none;
+    box-sizing:border-box;
+}
+
+.progress{
+    height:18px;
+    background:#223b64;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar{
+    height:18px;
+    width:0;
+    background:#d71920;
 }
 
 @media(max-width:900px){
 
-.hero-content{
-flex-direction:column;
-text-align:center;
-}
+    .hero-content{
+        flex-direction:column;
+        text-align:center;
+    }
 
-.hero-text h1{
-font-size:50px;
-}
+    .hero-text h1{
+        font-size:50px;
+    }
 
-.hero-mascote img{
-width:320px;
-}
+    .hero-text p{
+        font-size:20px;
+    }
 
+    .hero-mascote img{
+        width:320px;
+    }
+
+    .topo{
+        text-align:center;
+        padding:20px;
+    }
+
+    .logo{
+        width:180px;
+    }
 }
 </style>
 </head>
