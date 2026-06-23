@@ -6,7 +6,92 @@
 <title>Desafio do Mascote</title>
 <style>
 body{margin:0;font-family:Segoe UI,Arial;background:linear-gradient(135deg,#081a33,#102b55);color:#fff}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+.hero{
+min-height:100vh;
+background:
+linear-gradient(
+rgba(5,15,35,.75),
+rgba(5,15,35,.9)
+),
+url('banner.jpg');
+
+```
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+```
+
+}
+
+.topo{
+padding:30px 50px;
+}
+
+.logo{
+width:220px;
+}
+
+.hero-content{
+max-width:1400px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+padding:40px 60px;
+}
+
+.hero-text{
+max-width:600px;
+}
+
+.hero-text h1{
+font-size:80px;
+line-height:.95;
+margin:0;
+font-weight:900;
+}
+
+.hero-text p{
+font-size:26px;
+margin:25px 0;
+}
+
+.hero-mascote img{
+width:500px;
+max-width:100%;
+}
+
+.btnHero{
+background:#d71920;
+color:white;
+border:none;
+border-radius:12px;
+padding:18px 40px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+}
+
+@media(max-width:900px){
+
+```
+.hero-content{
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero-text h1{
+    font-size:50px;
+}
+
+.hero-mascote img{
+    width:320px;
+}
+```
+
+}
+
 .hero h1{font-size:3rem;margin:0}
 .hero p{font-size:1.2rem;opacity:.9}
 .btn{background:#d71920;color:#fff;border:none;padding:14px 28px;border-radius:10px;cursor:pointer;font-weight:bold}
@@ -15,16 +100,108 @@ body{margin:0;font-family:Segoe UI,Arial;background:linear-gradient(135deg,#081a
 input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none}
 .progress{height:18px;background:#223b64;border-radius:20px;overflow:hidden}
 .bar{height:18px;width:0;background:#d71920}
-.eagle{position:fixed;inset:0;font-size:300px;opacity:.05;display:flex;justify-content:center;align-items:center;pointer-events:none}
+.topo{
+padding:30px 50px;
+}
+
+.logo{
+width:220px;
+}
+
+.hero-content{
+max-width:1400px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+padding:40px 60px;
+}
+
+.hero-text{
+max-width:600px;
+}
+
+.hero-text h1{
+font-size:80px;
+line-height:.95;
+margin:0;
+font-weight:900;
+}
+
+.hero-text p{
+font-size:26px;
+margin:25px 0;
+}
+
+.hero-mascote img{
+width:500px;
+max-width:100%;
+}
+
+.btnHero{
+background:#d71920;
+color:#fff;
+border:none;
+border-radius:12px;
+padding:18px 40px;
+font-size:22px;
+font-weight:700;
+cursor:pointer;
+}
+
+.btnHero:hover{
+transform:translateY(-2px);
+}
+
+@media(max-width:900px){
+
+.hero-content{
+flex-direction:column;
+text-align:center;
+}
+
+.hero-text h1{
+font-size:50px;
+}
+
+.hero-mascote img{
+width:320px;
+}
+
+}
 </style>
 </head>
 <body>
-<div class="eagle">🦅</div>
-
 <section class="hero" id="inicio">
-<h1>DESAFIO DO MASCOTE</h1>
-<p>7 pistas • 1 investigação • 1 prêmio</p>
-<button class="btn" onclick="iniciar()">COMEÇAR INVESTIGAÇÃO</button>
+
+    <div class="topo">
+        <img src="logo.png" class="logo">
+    </div>
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <h1>DESAFIO<br>DO MASCOTE</h1>
+
+            <p>
+                Descubra a identidade do mascote da Equipe Estados Unidos
+                e concorra a um brinde exclusivo.
+            </p>
+
+            <button class="btnHero" onclick="iniciar()">
+                COMEÇAR DESAFIO
+            </button>
+
+        </div>
+
+        <div class="hero-mascote">
+            <img src="lincoln.png">
+        </div>
+
+    </div>
+
 </section>
 
 <div class="card hidden" id="quiz">
@@ -51,7 +228,6 @@ input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none}
 <input id="email" placeholder="E-mail">
 <input id="telefone" placeholder="Telefone">
 <button class="btn" onclick="enviarCadastro()">RECEBER BRINDE</button>
-<button class="btn" onclick="teste()">TESTAR GOOGLE SHEETS</button>
 </div>
 
 <script>
@@ -81,18 +257,35 @@ function validarFinal(){
    cadastro.classList.remove('hidden');
  } else alert('Resposta incorreta');
 }
-async function enviarCadastro(){
- const dados={nome:nome.value,setor:setor.value,email:email.value,telefone:telefone.value};
- try{
- await fetch('https://script.google.com/macros/s/AKfycbxy3ff4V15ZmqaXijpoB_TD71o-z6SHyAxzLSk5ka0rAlYv3ND_65LlSBsnlWf2mxB6/exec',{
- method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dados)});
- alert('Cadastro enviado com sucesso!');
- }catch(e){alert('Erro ao enviar cadastro');}
+function enviarCadastro() {
+
+  const nome = document.getElementById("nome").value.trim();
+  const setor = document.getElementById("setor").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
+
+  if (!nome || !setor || !email || !telefone) {
+    alert("Preencha todos os campos.");
+    return;
+  }
+
+  const url =
+    "https://script.google.com/macros/s/AKfycbxy3ff4V15ZmqaXijpoB_TD71o-z6SHyAxzLSk5ka0rAlYv3ND_65LlSBsnlWf2mxB6/exec"
+    + "?nome=" + encodeURIComponent(nome)
+    + "&setor=" + encodeURIComponent(setor)
+    + "&email=" + encodeURIComponent(email)
+    + "&telefone=" + encodeURIComponent(telefone);
+
+  window.open(url, "_blank");
+
+  alert("Parabéns! Seu cadastro foi realizado com sucesso. Em breve entraremos em contato para a entrega do brinde.");
+
+  document.getElementById("nome").value = "";
+  document.getElementById("setor").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("telefone").value = "";
 }
-function teste(){
- nome.value='TESTE';setor.value='SITE';email.value='teste@teste.com';telefone.value='999999999';
- enviarCadastro();
-}
+
 </script>
 </body>
 </html>
