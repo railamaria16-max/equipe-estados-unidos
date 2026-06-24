@@ -7,13 +7,14 @@
 <style>
 body{
     margin:0;
+    overflow-x:hidden;
     font-family:Segoe UI,Arial,sans-serif;
     background:#081a33;
     color:#fff;
 }
 
 .hero{
-    min-height:75vh;
+    height:100vh;
     background:
         linear-gradient(
             rgba(5,15,35,.75),
@@ -21,8 +22,9 @@ body{
         ),
         url('banner_inicial.png');
     background-size:cover;
-    background-position:center;
+    background-position:center center;
     background-repeat:no-repeat;
+    background-attachment:fixed;
 }
 .topo{
     padding:20px 40px;
@@ -43,11 +45,12 @@ body{
     display:flex;
     align-items:center;
     justify-content:flex-start;
-    padding:40px 120px;
+    padding:40px 80px;
 }
 
 .hero-text{
-    width:550px;
+    width:100%;
+    max-width:550px;
     background:rgba(0,0,0,.35);
     padding:40px;
     border-radius:24px;
@@ -191,8 +194,8 @@ input{
 
 <div style="
 background:#081428;
-padding:40px 20px;
-margin-top:0;
+padding:25px 20px;
+margin-top:-1px;
 border-top:1px solid rgba(255,255,255,.1);
 ">
 
