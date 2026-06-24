@@ -252,14 +252,24 @@ Rumo ao Primeiro Lugar!
 </div>
 <script>
 const perguntas=[
-["Pista 1","Qual é o número romano que representa cinquenta?","L"],
-["Pista 2","Qual é o menor valor representado na numeração romana?","I"],
-["Pista 3","Qual é a décima quarta letra do alfabeto?","N"],
-["Pista 4","Qual palavra representa a capacidade de cumprir aquilo que foi prometido?","COMPROMISSO"],
-["Pista 5","Qual letra está entre N e P?","O"],
-["Pista 6","Na numeração romana, qual letra representa novamente o valor cinquenta?","L"],
-["Pista 7","Qual é a primeira letra do mês de Novembro?","N"]
+["Pista 1","Qual é o número romano que representa cinquenta?",1],
+["Pista 2","Qual é o menor valor representado na numeração romana?",2],
+["Pista 3","Qual é a décima quarta letra do alfabeto?",3],
+["Pista 4","Qual palavra representa a capacidade de cumprir aquilo que foi prometido?",4],
+["Pista 5","Qual letra está entre N e P?",5],
+["Pista 6","Na numeração romana, qual letra representa novamente o valor cinquenta?",6],
+["Pista 7","Qual é a primeira letra do mês de Novembro?",7]
 ];
+
+const respostas = {
+  1:"TA==",
+  2:"SQ==",
+  3:"Tg==",
+  4:"Q09NUFJPTUlTU08=",
+  5:"Tw==",
+  6:"TA==",
+  7:"Tg=="
+};
 let i=0;
 function iniciar(){
 
@@ -315,49 +325,57 @@ function carregar(){
 }
 function validar(){
 
- if(resp.value.trim().toUpperCase()===perguntas[i][2]){
+   if(
+      btoa(resp.value.trim().toUpperCase()) ===
+      respostas[perguntas[i][2]]
+   ){
 
-   i++;
-   resp.value='';
+      i++;
+      resp.value='';
 
-   if(i<perguntas.length){
+      if(i<perguntas.length){
 
-      carregar();
+         carregar();
+
+      }else{
+
+         document.querySelector(".hero-text").innerHTML = `
+            <h2 style="font-size:60px;margin-bottom:20px">
+               🎯 DESAFIO FINAL
+            </h2>
+
+            <p style="font-size:28px">
+               Após analisar todas as pistas,
+               qual é o nome do nosso mascote?
+            </p>
+
+            <input
+               id="finalResp"
+               placeholder="Digite sua resposta">
+
+            <br><br>
+
+            <button class="btnHero"
+               onclick="validarFinal()">
+               ENVIAR RESPOSTA
+            </button>
+         `;
+      }
 
    }else{
 
-      document.querySelector(".hero-text").innerHTML = `
-         <h2 style="font-size:60px;margin-bottom:20px">
-            🎯 DESAFIO FINAL
-         </h2>
+      msg.innerText='Resposta incorreta.';
 
-         <p style="font-size:28px">
-            Após analisar todas as pistas,
-            qual é o nome do nosso mascote?
-         </p>
-
-         <input
-            id="finalResp"
-            placeholder="Digite sua resposta">
-
-         <br><br>
-
-         <button class="btnHero"
-            onclick="validarFinal()">
-            ENVIAR RESPOSTA
-         </button>
-      `;
    }
-
- }else{
-
-   msg.innerText='Resposta incorreta.';
-
- }
 }
 function validarFinal(){
 
- if(finalResp.value.trim().toUpperCase()==='LINCOLN'){
+const respostaCorreta = "TElOQ09MTg==";
+
+if (
+    btoa(finalResp.value.trim().toUpperCase()) === respostaCorreta
+)
+{
 
     document.querySelector(".hero-text").innerHTML = `
       <h2 style="
@@ -372,7 +390,7 @@ function validarFinal(){
          color:#ffd700;
          margin-bottom:30px;
       ">
-         Você descobriu a identidade do mascote Lincoln!
+         Você descobriu a identidade do mascote!
       </p>
 
       <p style="font-size:28px">
@@ -398,6 +416,7 @@ function validarFinal(){
     alert('Resposta incorreta');
 
  }
+
 }
 function enviarCadastro() {
 
