@@ -29,12 +29,12 @@ body{
 }
 
 .logo{
-    width:300px;
+    width:380px;
     height:auto;
     display:block;
 }
     .topo img{
-    max-width:160px;
+    max-width:none;
 }
 .hero-content{
     max-width:1600px;
@@ -152,7 +152,7 @@ input{
         padding:20px;
     }
 .logo{
-    width:520px;
+    width:220px;
     height:auto;
 }
   
@@ -188,31 +188,7 @@ input{
 
 </section>
 
-<div class="card hidden" id="quiz" style="max-width:800px;">
-<div class="progress"><div class="bar" id="bar"></div></div>
-<h2 id="titulo"></h2>
-<p id="pergunta"></p>
-<input id="resp" placeholder="Digite sua resposta">
-<button class="btn" onclick="validar()">VALIDAR</button>
-<p id="msg"></p>
-</div>
 
-<div class="card hidden" id="final">
-<h2>🎯 Desafio Final</h2>
-<p>Após analisar todas as pistas, qual é o nome do nosso mascote?</p>
-<input id="finalResp">
-<button class="btn" onclick="validarFinal()">ENVIAR RESPOSTA</button>
-</div>
-
-<div class="card hidden" id="cadastro">
-<h2>🎉 Parabéns!</h2>
-<p>Você solucionou o desafio. Preencha seus dados para receber o brinde.</p>
-<input id="nome" placeholder="Nome">
-<input id="setor" placeholder="Setor">
-<input id="email" placeholder="E-mail">
-<input id="telefone" placeholder="Telefone">
-<button class="btn" onclick="enviarCadastro()">RECEBER BRINDE</button>
-</div>
 <div style="
 background:#081428;
 padding:40px 20px;
@@ -256,7 +232,7 @@ font-weight:bold;
 SUPERGIRO DISTRIBUIDORA!
 <br>
 <span style="color:#d71920">
-Rumo ao primeiro Lugar!
+Rumo ao Primeiro Lugar!
 </span>
 </div>
 
@@ -275,32 +251,55 @@ let i=0;
 function iniciar(){
 
     document.querySelector(".hero-text").innerHTML = `
-        <div class="card" style="
-            max-width:800px;
-            margin:0;
-            background:rgba(0,0,0,.35);
-            backdrop-filter:blur(8px);
+        <div style="
+            width:100%;
+            max-width:650px;
         ">
+
             <div class="progress">
                 <div class="bar" id="bar"></div>
             </div>
 
-            <h2 id="titulo"></h2>
-            <p id="pergunta"></p>
+            <h2 id="titulo" style="
+                margin-top:25px;
+                font-size:42px;
+            "></h2>
 
-            <input id="resp" placeholder="Digite sua resposta">
+            <p id="pergunta" style="
+                font-size:26px;
+            "></p>
 
-            <button class="btn" onclick="validar()">
+            <input
+                id="resp"
+                placeholder="Digite sua resposta"
+            >
+
+            <br><br>
+
+            <button
+                class="btnHero"
+                onclick="validar()">
                 VALIDAR
             </button>
 
             <p id="msg"></p>
+
         </div>
     `;
 
     carregar();
 }
-function carregar(){titulo.innerText=perguntas[i][0];pergunta.innerText=perguntas[i][1];bar.style.width=(i+1)/perguntas.length*100)+'%';msg.innerText='';}
+function carregar(){
+
+    titulo.innerText = perguntas[i][0];
+    pergunta.innerText = perguntas[i][1];
+
+    bar.style.width =
+        ((i+1)/perguntas.length*100) + "%";
+
+    msg.innerText = "";
+
+}
 function validar(){
 
  if(resp.value.trim().toUpperCase()===perguntas[i][2]){
@@ -408,14 +407,41 @@ function enviarCadastro() {
 
   window.open(url, "_blank");
 
-  alert("Parabéns! Seu cadastro foi realizado com sucesso. Em breve entraremos em contato para a entrega do brinde.");
+document.querySelector(".hero-text").innerHTML = `
+    <h2 style="
+        font-size:60px;
+        color:#ffd700;
+        margin-bottom:20px;
+    ">
+        🏆 CADASTRO REALIZADO!
+    </h2>
 
-  document.getElementById("nome").value = "";
-  document.getElementById("setor").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("telefone").value = "";
+    <p style="
+        font-size:28px;
+        line-height:1.5;
+    ">
+        Obrigado por participar do
+        <strong>Desafio do Mascote</strong>.
+    </p>
+
+    <p style="
+        font-size:24px;
+    ">
+        Seu cadastro foi enviado com sucesso.
+        Em breve entraremos em contato para a entrega do brinde.
+    </p>
+
+    <p style="
+        font-size:22px;
+        color:#d71920;
+        font-weight:bold;
+        margin-top:25px;
+    ">
+        🇺🇸 Boa sorte e rumo ao primeiro lugar!
+    </p>
+`;
+
 }
-
 </script>
 </body>
 </html>
